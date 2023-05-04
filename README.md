@@ -7,7 +7,7 @@ _______________________________________________________________
 
 * [Overview](#overview)
 * [Requirements](#requirements)
-* [Project description](#projectdescription)
+* Project description
     * [Task1](#task1)
     * [Task2](#task2)
     * [Task3](#task3)
