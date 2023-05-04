@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from utalties.Filter import Filter
+from Utilities.Filter import Filter
 import random
 import numpy as np
 import matplotlib.pyplot as plt

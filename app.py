@@ -1,16 +1,16 @@
 ### Import required libararies ###
 from flask import Flask, render_template , request , jsonify , json
-from utalties.Filter import Filter
-from utalties.Frequency import Frequency
-from utalties.Histogram import Histogram
-from utalties.Hough import Hough
-from utalties.contour import Contour
-from utalties.HarrisCorner import Harris
-from utalties.ApplySift import ApplySift 
-from  utalties.Match import *
-from utalties.Sift import *
-from utalties.Segmentation import Segmentation
-from utalties.Thresholding import Thresholding
+from Utilities.Filter import Filter
+from Utilities.Frequency import Frequency
+from Utilities.Histogram import Histogram
+from Utilities.Hough import Hough
+from Utilities.contour import Contour
+from Utilities.HarrisCorner import Harris
+from Utilities.ApplySift import ApplySift 
+from Utilities.Match import *
+from Utilities.Sift import *
+from Utilities.Segmentation import Segmentation
+from Utilities.Thresholding import Thresholding
 import numpy as np
 import cv2
 import os
