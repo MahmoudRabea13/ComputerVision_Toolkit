@@ -38,11 +38,11 @@ Requirements
 ============
 ```
 Flask==2.2.2
-
 matplotlib==3.6.1
 numpy==1.22.4
 opencv_python==4.6.0.66
 scipy==1.10.1
+skimage==0.0
 
 ```
 ```
