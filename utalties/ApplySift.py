@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-import Sift
+import utalties.Sift
 from matplotlib import pyplot as plt
 import logging
 logger = logging.getLogger(__name__)
@@ -11,8 +11,8 @@ class ApplySift():
 
     def calculate_sift(self,img1, img2):
         # Compute SIFT keypoints and descriptors
-        kp1, des1 = Sift.computeKeypointsAndDescriptors(img1)
-        kp2, des2 = Sift.computeKeypointsAndDescriptors(img2)
+        kp1, des1 = utalties.Sift.computeKeypointsAndDescriptors(img1)
+        kp2, des2 = utalties.Sift.computeKeypointsAndDescriptors(img2)
 
         # Initialize and use FLANN
         FLANN_INDEX_KDTREE = 0

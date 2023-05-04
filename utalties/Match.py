@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from Sift import computeKeypointsAndDescriptors
+from utalties.Sift import computeKeypointsAndDescriptors
 class Match():
     def calc_SSD(self,des1,des2):
         ssd = 0

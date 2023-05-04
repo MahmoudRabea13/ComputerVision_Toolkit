@@ -119,7 +119,7 @@ body{
 .noise-types,
 .modes,
 .edge-detection-types ,.shapes
-,.contourparameters{
+,.contourparameters,.harris{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -130,7 +130,7 @@ body{
 .parameter2,
 .alpha,
 .beta,
-.gamma{
+.gamma,.harrisrange{
     display: flex;
     justify-content: space-around;
     margin: 15px 0 0;
@@ -143,7 +143,7 @@ body{
     display: flex;
 }
 
-.radius{
+.radius,.harrisrange{
     display: none;
 }
 
@@ -152,7 +152,7 @@ body{
 .parameter2-title,
 .alpha-title,
 .beta-title,
-.gamma-title{
+.gamma-title,.harrisrange-title{
 width: 40%;
 }
 
@@ -161,7 +161,7 @@ width: 40%;
 .parameter2 input,
 .alpha input,
 .beta input,
-.gamma input{
+.gamma input,.harrisrange input{
     width: 50%;
     outline: none;
     border: none;
@@ -169,6 +169,10 @@ width: 40%;
     color: var(--font-color);
 }
 
+#apply_harris{
+    background-color: var(--unslected-font-color);
+    
+}
 .side-bar .filter,
 .noise-type,
 .mode,
@@ -284,7 +288,7 @@ img{
     width: 58.5%;
 }
 
-.show-hybrid{
+.show-hybrid,.show-ssd, .show-sift{
     width: 100%;
     padding: 10px 200px;
     box-sizing: border-box;
@@ -299,7 +303,7 @@ img{
     transition: 0.3s;
 }
 
-.show-hybrid:hover{
+.show-hybrid:hover,.show-ssd:hover ,.show-sift:hover{
     background-color: var(--Mid-color);
 }
 
@@ -329,7 +333,10 @@ img{
     background-color: var(--Dark-color);
 }
 
-#raduis , #raduis2 , #raduis3 ,#kernal,#parameter2,#parameter1 ,#alpha,#beta,#gamma{
+#raduis , #raduis2 , #raduis3 ,#kernal,
+#parameter2,#parameter1 ,#alpha,#beta,#gamma,
+#harrisrange ,#threshold
+{
 font-size: 20px;
 text-align: center;
 }

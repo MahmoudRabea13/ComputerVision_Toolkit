@@ -59,7 +59,15 @@ function json_request(data,route,state){
                     }
                 if(state == 'outputcontour'){
                         send_img('./static/imgs/ContourOutput.jpg','outputcontour')
-    
+                }
+                if(state == 'harris'){
+                    send_img('./static/imgs/output_harris.jpg','harris');
+                }
+                if(state == 'sift'){
+                    send_img('./static/imgs/sift_img.jpg','sift');
+                }
+                if(state == 'ssd'){
+                    send_img('./static/imgs/ssd_img.jpg','ssd');
                 }
             } else {
             console.log('err')
@@ -126,6 +134,24 @@ function send_img(path,state){
             Contour_output.innerHTML = " ";
             Contour_output.appendChild(outputcontour); 
         }
+        if(state == 'harris'){
+            harrisimg = document.createElement('img')
+            harrisimg.src = path +'?t=' + timestamp;
+            HarrisOutput.innerHTML = " ";
+            HarrisOutput.appendChild(harrisimg);      
+            }
+        if(state == 'sift'){
+            sift_img = document.createElement('img')
+            sift_img.src = path +'?t=' + timestamp;
+            siftImg.innerHTML = " ";
+            siftImg.appendChild(sift_img);      
+            }
+        if(state == 'ssd'){
+            ssd_img = document.createElement('img')
+            ssd_img.src = path +'?t=' + timestamp;
+            ssdImg.innerHTML = " ";
+            ssdImg.appendChild(ssd_img);      
+            }
     } else {
         console.log('Image does not exists.')
     }

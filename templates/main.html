@@ -26,6 +26,9 @@
             <div class="tab tab4">Edge Detection</div>
             <div class="tab tab5">Hough</div>
             <div class="tab tab6">Contour</div>
+            <div class="tab tab7">Harris</div>
+            <div class="tab tab8">SIFT</div>
+            <div class="tab tab9">SSD</div>
         </div>
     </div>
     <div class="tab-body TB1">
@@ -220,6 +223,94 @@
         </div>
         </div>
     </div>
+    <div class="tab-body TB7">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload3" class="upload">
+                </div>
+                
+                <div class="harris">
+                    <div class="harrisrange">
+                        <div class="harrisrange-title">Range</div>
+                        <input type="number" value="0.09"  min="0" max="0.5" step="0.01" id="harrisrange">
+                        <button id="apply_harris">Apply</button>
+                    </div>
+                </div>
+            <div id="harris-container">    
+            </div>
+            </div>
+            <div class="imgs">
+                <div class="img original-img-harris double-img">
+                </div>
+                <div class="img harris-img double-img">
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-body TB8">
+        <div class="container">
+            <div class="input-one input">
+                <div class="upload-img">
+                    <input type="file" id="upload-img1-sift" class="upload-img1-sift">
+                </div>
+                <div class="img first-img-sift"></div>
+                <div>Object to be matched</div>
+            </div>
+            <div class="input-two input">
+                <div class="upload-img">
+                    <input type="file" id="upload-img2-sift" class="upload-img2-sift">
+                </div>
+                <div class="img second-img-sift" ></div>
+                <div>Image</div>
+            </div>
+            <div class="result input">
+                <form action="/sift" method="POST">
+                    <div class="show-sift" id="sift">Apply SIFT</div>
+                </form>
+                <div class="imgs-tab3-sift">
+                   <div class="img sift-img">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="tab-body TB9">
+        <div class="container">
+            <div class="input-one input">
+                <div class="upload-img">
+                    <input type="file" id="upload-ssd1" class="upload-ssd1">
+                </div>
+                <div class="img first-ssdimg"></div>
+                <div class="radius-2">
+                      <input type="radio" id="SSD" name="choose_mode" value="SSD">
+                      <label for="SSD">SSD</label><br>
+                      <input type="radio" id="NCC" name="choose_mode" value="NCC">
+                      <label for="NCC">NCC</label><br>
+                </div>
+            </div>
+            <div class="input-two input">
+                <div class="upload-img">
+                    <input type="file" id="upload-ssd2" class="upload-ssd2">
+                </div>
+                <div class="img second-ssdimg" ></div>
+                <div class="threshold-3">
+                    <div class="threshold-title-3">Threshold</div>
+                    <input type="number" value="200"  min="0" max="1500" step="0.2" id="threshold">
+                </div>
+            </div>
+            <div class="result input">
+                <form action="/ssd" method="POST">
+                    <div class="show-ssd" id="ssd">Show Result</div>
+                </form>
+                <div class="imgs-tab3-ssd">
+                   <div class="img ssd-img">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>
 <script src="/static/JS/Filter.js"></script>
 <script src="/static/JS/Histogram.js"></script>
@@ -227,6 +318,9 @@
 <script src="/static/JS/Edge.js"></script>
 <script src="/static/JS/Hough.js"></script>
 <script src="/static/JS/Contour.js"></script>
+<script src="/static/JS/Harris.js"></script>
+<script src="/static/JS/SIFT.js"></script>
+<script src="/static/JS/SSD.js"></script>
 <script src="/static/JS/functions.js"></script>
 <script src="/static/JS/all.min.js"></script>
 </html>

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-class harris():
+class Harris():
     def harris_corner_detector(self,image, k=0.04, threshold=0.01):
         # Convert image to grayscale
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

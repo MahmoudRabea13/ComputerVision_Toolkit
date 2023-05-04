@@ -4,14 +4,16 @@ from utalties.Frequency import Frequency
 from utalties.Histogram import Histogram
 from utalties.Hough import Hough
 from utalties.contour import Contour
+from utalties.HarrisCorner import Harris
+from utalties.ApplySift import ApplySift 
+from  utalties.Match import *
+from utalties.Sift import *
 import numpy as np
 import cv2
 import os
 from skimage.util import img_as_ubyte
 from skimage import data, color
 from skimage.draw import ellipse_perimeter
-
-
 app = Flask(__name__)
 @app.route('/')
 def main():
@@ -191,8 +193,6 @@ def hough():
         img = request.files.get('HoughInput')
         name = './static/imgs/' + img.filename + '.jpg'
         img.save(name)
-
-        # print(img)
         return render_template('main.html')
     else:
         return render_template('main.html')
@@ -295,12 +295,107 @@ def apply_contour():
         print(h)
         print(w) 
         #with each new selection , post request is initiated and u will have the updated data 
-        #after handling , save output image as ContourOutput.jpg :)
         return render_template('main.html')
     else:
         return render_template('main.html')
 ## End of Contour Rab ##
+## Harris Tab ## 
+@app.route('/harris' , methods = ['POST', 'GET'] )
+def harris():
+    Matcho = Match()
+    if request.method == 'POST':
+        img = request.files.get('input_harris')
+        name = './static/imgs/' + img.filename + '.jpg'
+        img.save(name)
+        print(img)
+        return render_template('main.html')
+    else:
+        return render_template('main.html')
+@app.route('/applyharris' , methods =['POST','GET'])
+def applyharris():
+    if request.method == 'POST':
+        range = request.json['harris']
+        img = cv2.imread("./static/imgs/input_harris.jpg")
+        threshold = float(range)
+        print(threshold)
+        Harris.harris_corner_detector(Harris,img,threshold)
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
+## End of Harris Tab ##
+## SIFT Tab ##
+@app.route('/sift' , methods = ['POST', 'GET'] )
+def sift():
+    if request.method == 'POST':
+        img1 = request.files.get('firstimg_sift')
+        img2 = request.files.get('secondimg_sift')
+        if img1 != None:
+            name = './static/imgs/' + img1.filename + '.jpg'
+            img1.save(name)
+        if img2 != None:
+            name = './static/imgs/' + img2.filename + '.jpg'
+            img2.save(name)
+        print(img1)
+        print(img2)
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
+@app.route('/applysift' , methods = ['POST', 'GET'] )
+def apllysift():
+    if request.method == 'POST':
+        data = request.json['sift']
+        print(data)
+        if os.path.exists("./static/imgs/firstimg_sift.jpg") == True and os.path.exists("./static/imgs/secondimg_sift.jpg") == True:
+            img1 = cv2.imread("./static/imgs/firstimg_sift.jpg",0)
+            img2 = cv2.imread("./static/imgs/secondimg_sift.jpg",0)
+            ApplySift.calculate_sift(ApplySift,img1, img2)
+        else: 
+            print("upload two imgs")
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
+## End of SIFT Tab ##
+## SSD Tab ##
+@app.route('/ssd' , methods = ['POST', 'GET'] )
+def ssd():
+    if request.method == 'POST':
+        img1 = request.files.get('firstimg_ssd')
+        img2 = request.files.get('secondimg_ssd')
+        if img1 != None:
+            name = './static/imgs/' + img1.filename + '.jpg'
+            img1.save(name)
+        if img2 != None:
+            name = './static/imgs/' + img2.filename + '.jpg'
+            img2.save(name)
+        print(img1)
+        print(img2)
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
 
+@app.route('/applyssd' , methods = ['POST', 'GET'] )
+def apllyssd():
+    if request.method == 'POST':
+        data = request.json['type']
+        threshold = request.json['threshold']
+        print(data)
+        img1 = cv2.imread("./static/imgs/firstimg_ssd.jpg",0)
+        img2 = cv2.imread("./static/imgs/secondimg_ssd.jpg",0)
+        img1 = cv2.resize(img1,(160,160))
+        img2 = cv2.resize(img2,(160,160))
+        if data =='SSD':
+            Match.draw(Match,img2,img1,"SSD",int(threshold))
+        if data  =='NCC':
+            Match.draw(Match,img2,img1,"NCC",int(threshold))
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
+## End of SSD Tab ##
+## Segmentation Tab ##
 
+## End of Segmentation Tab ##
+## Thresholding Tab ##
+
+## End of Thresholding Tab ##
 if __name__ == '__main__':
     app.run(debug=True)
