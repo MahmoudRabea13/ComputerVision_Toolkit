@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Task1</title>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="header">
+        <div class="tabs">
+            <div class="tab tab1 active-tab">Filters</div>
+            <div class="tab tab2">Histogram</div>
+            <div class="tab tab3">Hybrid</div>
+            <div class="tab tab4">Edge Detection</div>
+        </div>
+    </div>
+    <div class="tab-body TB1">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload" class="upload">
+                </div>
+                <div class="filters">
+                    <form action="/applyfilter" method="POST">
+                        <div class="filter mad-filter active-filter kernal">Median Filter</div>
+                        <div class="filter gaussian-filter kernal">Gaussian Filter</div>
+                        <div class="filter avg-filter kernal">Averaging Filter</div>
+                        <div class="filter lp-filter radius-filter">Low-Pass Filter</div>
+                        <div class="filter hp-filter radius-filter">High-Pass Filter</div>
+                    </form>
+                    <div class="kernal-size">
+                        <div class="kernal-size-title">Kernal Size</div>
+                        <input type="number" value="3" min="1" max="9" step="2" id="kernal">
+                    </div>
+                    <div class="radius">
+                        <div class="radius-title">Radius Size</div>
+                        <input type="number" value="20"  min="0" max="256" step="1" id="raduis">
+                    </div>
+                </div>
+
+                <div class="snr">
+                    <div class="noise-title">
+                        <div class="title">Noise</div>
+                    </div>
+                    <div class="noise-types">
+                        <form action="/noise" method="POST">
+                            <div class="noise-type uniform-noise active-noise-type">Unifrom Noise</div>
+                            <div class="noise-type gaussian-noise" >Gaussian Noise</div>
+                            <div class="noise-type sp-noise" >Salt & Pepper Noise</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="imgs">
+                <div class="img original-img double-img">
+                </div>
+                <div class="img filtered-img double-img">
+
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="tab-body TB2">
+        <div class="container">
+                <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload-histogram" class="upload-hybrid1">
+                </div>
+                <div class="modes">
+                    <div class="show-gray mode" id="gray">Gray</div>
+                    <div class="show-rgb mode active-mode" id="rgb">RGB</div>
+                </div>
+            </div>
+        <div class="imgs-tab2">
+            <div class="tb2-first-raw tb2-raw">
+                <div class="img input-img"></div>
+                <div class="img output-img"></div>
+            </div>
+            <div class="tb2-second-raw tb2-raw">
+                <div class="img input-hist"></div>
+                <div class="img output-hist"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="tab-body TB3">
+        <div class="container">
+            <div class="input-one input">
+                <div class="upload-img">
+                    <input type="file" id="upload-hybrid1" class="upload-hybrid1">
+                </div>
+                <div class="img first-img"></div>
+                <div class="radius-2">
+                    <div class="radius-title-2">Radius img1</div>
+                    <input type="number" value="20"  min="0" max="256" step="1" id="raduis2">
+                </div>
+            </div>
+            <div class="input-two input">
+                <div class="upload-img">
+                    <input type="file" id="upload-hybrid2" class="upload-hybrid2">
+                </div>
+                <div class="img second-img" ></div>
+                <div class="radius-3">
+                    <div class="radius-title-3">Radius img2</div>
+                    <input type="number" value="20"  min="0" max="256" step="1" id="raduis3">
+                </div>
+            </div>
+            <div class="result input">
+                <form action="/hybrid" method="POST">
+                    <div class="show-hybrid" id="hybrid">Show hybrid</div>
+                </form>
+                <div class="imgs-tab3">
+                   <div class="img hybrid-img">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="tab-body TB4">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload-edge" class="upload" >
+                </div>
+                <div class="edge-detection-types">
+                    <div class="noise-title">
+                        <div class="title">Edge detection Types</div>
+                    </div>
+                    <form action="/edgetype" method="POST">
+                        <div class="edge-detection-type sobel active-edge-detection">Sobel Edge Detection</div>
+                        <div class="edge-detection-type canny ">Canny Edge Detection</div>
+                        <div class="edge-detection-type roberts ">Roberts Edge Detection</div>
+                        <div class="edge-detection-type prewitt ">Prewitt Edge Detection</div>
+                    </form>
+                
+                    <div class="threshold-title">
+                        <div class="title">Thresholding</div>
+                    </div>
+                    <form action="/threshold" method="POST">
+                        <div class="threshold-type globalthreshold active-threshold">Global Threshold</div>
+                        <div class="threshold-type localthreshold ">Local threshold</div>
+                    </form>
+                </div>
+            </div>
+            <div class="imgs">
+                <div class="img original-img tb4-original-filter double-img"></div>
+                <div class="img filtered-img tb4-selected-filter double-img"></div>
+            </div> 
+    </div>
+</body>
+<script src="/static/JS/Filter.js"></script>
+<script src="/static/JS/Histogram.js"></script>
+<script src="/static/JS/Hybrid.js"></script>
+<script src="/static/JS/Edge.js"></script>
+<script src="/static/JS/functions.js"></script>
+<script src="/static/JS/all.min.js"></script>
+</html>
