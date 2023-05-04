@@ -12,6 +12,7 @@ _______________________________________________________________
     * [Task2](#task2)
     * [Task3](#task3)
     * [Task4](#task4)
+* <p><a href="#members">Team meambers</a></p>
 
 Overview
 ============
@@ -57,6 +58,7 @@ Task1
 4. apply Low & High pass filters to two images and show their [Hybrid image](https://en.wikipedia.org/wiki/Hybrid_image)
 5. apply different Edge detection methods: [Sobel](https://homepages.inf.ed.ac.uk/rbf/HIPR2/sobel.htm) , [Canny](https://homepages.inf.ed.ac.uk/rbf/HIPR2/canny.htm) , [Roberts](https://homepages.inf.ed.ac.uk/rbf/HIPR2/roberts.htm) , [Prewitt](https://homepages.inf.ed.ac.uk/rbf/HIPR2/prewitt.htm)
 6. Apply Local & Global Thresholding 
+
 | `Median filter` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/medianF.jpg) |
 | --- | --- |
 | `Gaussian filter` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/gaussianF.jpg) |
@@ -90,10 +92,10 @@ Task3
 2. [SIFT](https://www.sciencedirect.com/topics/computer-science/scale-invariant-feature-transform#:~:text=Scale%2DInvariant%20Feature%20Transform%20(SIFT)%E2%80%94SIFT%20is%20an,Keypoints%20Detection%2C%20and%20Feature%20Description.)
 3. [SSD](https://en.wikipedia.org/wiki/Sum_of_absolute_differences#:~:text=In%20digital%20image%20processing%2C%20the,block%20being%20used%20for%20comparison.) 
 
-| `Harris` | ![alt text]() |
+| `Harris` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/harris.jpg) |
 | --- | --- |
-| `SIFT` | ![alt text]() |
-| `SSD` | ![alt text]() |
+| `SIFT` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/sift.jpg) |
+| `SSD` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/ssd.jpg) |
 
 Task4
 ============
@@ -110,12 +112,16 @@ Task4
 | `Optimal` | ![alt text](https://github.com/MahmoudRabea13/ComputerVision_Toolkit/blob/main/snaps/optimalglobal.png) |
 
 _____________________
+<div id='members'>
+   
 ### Task Submitted by 3rd year SBME2024 students 💉:
 * [Ahemd Hassan](https://github.com/ahmedhassan187) 
 * [Dina khalid](https://github.com/dina-khalid) 
 * [Abdelrahman Yasser](https://github.com/Abdelrhman012)
 * [Mohammed Nasser](https://github.com/MohamedNasser8) 
 * [Mahmoud Rabea](https://github.com/MahmoudRabea13) 
+
+</div>
 
 <p align="right"><a href="#top">back to top</a></p>
 
