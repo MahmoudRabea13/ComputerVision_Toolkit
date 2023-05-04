@@ -8,6 +8,7 @@ document.addEventListener("click", (e)=>{
             tabsBodies[i].style.display = "none"
             if(tabsBodies[i].classList[1][2] == e.target.classList[1][3]){
                 tabsBodies[i].style.display = "flex"
+                console.log(tabsBodies[i].classList.value)
             }
         }
     }
@@ -68,6 +69,13 @@ function json_request(data,route,state){
                 }
                 if(state == 'ssd'){
                     send_img('./static/imgs/ssd_img.jpg','ssd');
+                }
+                if(state == 'segmentation'){
+                    send_img('./static/imgs/segmented.jpg','segmentation');
+                    
+                }
+                if(state == 'thresholdalgorithms'){
+                    send_img('./static/imgs/Outputthreshold.jpg','thresholdalgorithms')
                 }
             } else {
             console.log('err')
@@ -152,6 +160,18 @@ function send_img(path,state){
             ssdImg.innerHTML = " ";
             ssdImg.appendChild(ssd_img);      
             }
+            if(state == 'segmentation'){
+                segmented = document.createElement('img')
+                segmented.src = path +'?t=' + timestamp;
+                SegmentedImg.innerHTML = " ";
+                SegmentedImg.appendChild(segmented);      
+                }
+            if(state == 'thresholdalgorithms'){
+                threshalgorithm = document.createElement('img')
+                threshalgorithm.src = path +'?t=' + timestamp;
+                outputThreshold.innerHTML = " ";
+                outputThreshold.appendChild(threshalgorithm);
+            }
     } else {
         console.log('Image does not exists.')
     }
@@ -195,10 +215,34 @@ function imgToFlask(name , data ,filename , route){
     xhr.send(fd);
     console.log(fd)
 };
+/*Function for histogram 1st tab*/ 
 function RGB_Gray(path,div){
     var timestamp = new Date().getTime();
     img = document.createElement('img')
     img.src = path +'?t=' + timestamp;
     div.innerHTML = " ";
     div.appendChild(img); 
+}
+
+/*Functions for segmentation 10th tab*/
+function DisplaySegmentationParameters(seedpoint,rgthreshold,msbandwidth,numclusters,Maxiter){
+    document.querySelector('.seedpoint-size').style.display= seedpoint;
+    document.querySelector('.rgthreshold').style.display= rgthreshold;
+    document.querySelector('.meanshift-bandwidth').style.display= msbandwidth;
+    document.querySelector('.cluster').style.display= numclusters;
+    document.querySelector('.Maxiter').style.display= Maxiter;
+};
+
+function segment(type,paramater1,parameter2,seedpoint,rgthreshold,msbandwidth,numclusters,Maxiter){
+        value1= document.getElementById(paramater1).value
+        value2= document.getElementById(parameter2).value
+        DisplaySegmentationParameters(seedpoint,rgthreshold,msbandwidth,numclusters,Maxiter)
+        segmentation = {
+            type: type,
+            parameter1:value1,
+            parameter2: value2
+        }
+        json_request(segmentation,'/segmented','segmentation')
+        console.log(segmentation)
+    
 }

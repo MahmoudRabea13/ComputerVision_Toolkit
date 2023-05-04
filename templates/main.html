@@ -29,6 +29,8 @@
             <div class="tab tab7">Harris</div>
             <div class="tab tab8">SIFT</div>
             <div class="tab tab9">SSD</div>
+            <div class="tab tabA">Segmentation</div>
+            <div class="tab tabB">Thresholding</div>
         </div>
     </div>
     <div class="tab-body TB1">
@@ -311,6 +313,102 @@
         </div>
         </div>
     </div>
+    <div class="tab-body TBA">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="uploadsegmented" class="upload">
+                </div>
+                <div class="segments" id="segments">
+                    <form action="/segmented" method="POST">
+                        <div class="segmentation-title">
+                            <div class="title">Select Segmentation Technique</div>
+                        </div>
+                        <div class="segment mean-shift active-segment ">Mean Shift</div>
+                        <div class="segment k-means">K-Means</div>
+                        <div class="segment agglomerative">Agglomerative</div>
+                        <div class="segment region-growing">Region Growing</div>
+                    </form>
+                    <div class="seedpoint-size" style="display: none;">
+                        <div class="seedpoint-size-title">Seed Point</div>
+                        <input type="number" value="100" min="30" max="600" step="1"  id="seedpoint">
+                    </div>
+                    <div class="rgthreshold" style="display: none;">
+                        <div class="rgthreshold-title">Threshold</div>
+                        <input type="number" value="130"  min="30" max="200" step="1" id="rgthreshold">
+                    </div>
+                    <div class="meanshift-bandwidth" style="display: none;">
+                        <div class="meanshift-bandwidth-title">Bandwidth</div>
+                        <input type="number" value="40"  min="10" max="200" step="10" id="meanshift-bandwidth">
+                    </div>
+                    <div class="cluster" style="display: none;">
+                        <div class="cluster-title">Num of Clusters</div>
+                        <input type="number" value="2"  min="1" max="20" step="1" id="cluster">
+                    </div>
+                    <div class="Maxiter" style="display: none;">
+                        <div class="Maxiter-title">Max Num of iterations</div>
+                        <input type="number" value="100"  min="100" max="400" step="1" id="Maxiter">
+                    </div>
+                </div>
+            </div>
+            <div class="imgs">
+                <div class="img unsegmented-img double-img">
+                </div>
+                <div class="img segmented-img double-img">
+
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="tab-body TBB">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload-threshold" class="upload" >
+                </div>
+
+                <div class="algorithm-types">
+                    <div class="algorithm-title">
+                        <div class="title">Select an Algorithm</div>
+                    </div>
+                    <form action="/applythreshold" method="POST">
+                        <span id="defaultlocal" >
+                            <input type="radio" id="default" name="Algorithm" value="default" checked='true'>
+                            <label for="default">Use Default</label><br>
+                        </span>
+                        <input type="radio" id="Otsu" name="Algorithm" value="otsu">
+                        <label for="Otsu">Otsu</label><br>
+                        <input type="radio" id="Optimal" name="Algorithm" value="Optimal">
+                        <label for="Optimal">Optimal</label><br>
+                        <span id="Spectral" style="display: flex;">
+                            <input type="radio" id="Spectral" name="Algorithm" value="Spectral">
+                            <label for="Spectral">Spectral</label><br>
+                            </span>
+                        </form>
+                    <div class="threshold-title-11">
+                        <div class="title">Thresholding</div>
+                    </div>
+                    <form action="/applythreshold" method="POST">
+                        <input type="radio" id="local" class="localcheck" name="threshold" value="local" checked='true'>
+                        <label for="local">Local Thresholding</label><br>
+                        <input type="radio" class="globalcheck" id="global" name="threshold" value="global">
+                        <label for="global">Global Thresholding </label><br>
+                    </form>
+                    <div class="window-size">
+                    <div class="title" id="window-size">
+                    <div class="title">Window Size</div>
+                    <input type="number" value="5"  min="0" max="200" step="1" id="window">
+                    </div>    
+                    </div>
+                </div>
+                <div class="applythreshold" id="apply-threshold">Apply</div>
+            </div>
+            <div class="imgs">
+                <div class="img original-img tb2-input-img double-img"></div>
+                <div class="img filtered-img tb2-output-img double-img"></div>
+            </div> 
+    </div>
+    </div>
 </body>
 <script src="/static/JS/Filter.js"></script>
 <script src="/static/JS/Histogram.js"></script>
@@ -323,4 +421,6 @@
 <script src="/static/JS/SSD.js"></script>
 <script src="/static/JS/functions.js"></script>
 <script src="/static/JS/all.min.js"></script>
+<script src="/static/JS/Thresholding.js"></script>
+<script src="/static/JS/Segmentation.js"></script>
 </html>

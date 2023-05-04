@@ -1,3 +1,4 @@
+### Import required libararies ###
 from flask import Flask, render_template , request , jsonify , json
 from utalties.Filter import Filter
 from utalties.Frequency import Frequency
@@ -8,12 +9,16 @@ from utalties.HarrisCorner import Harris
 from utalties.ApplySift import ApplySift 
 from  utalties.Match import *
 from utalties.Sift import *
+from utalties.Segmentation import Segmentation
+from utalties.Thresholding import Thresholding
 import numpy as np
 import cv2
 import os
 from skimage.util import img_as_ubyte
 from skimage import data, color
 from skimage.draw import ellipse_perimeter
+th = Thresholding()
+###############################################################################
 app = Flask(__name__)
 @app.route('/')
 def main():
@@ -392,10 +397,81 @@ def apllyssd():
         return render_template("main.html")
 ## End of SSD Tab ##
 ## Segmentation Tab ##
+@app.route('/unsegmented' , methods = ['POST', 'GET'] )
+def unsegmented():
+    if request.method == 'POST':
+        img = request.files.get('unsegmented')
+        name = './static/imgs/' + img.filename + '.jpg'
+        img.save(name)
+        print(img)
+        return render_template('main.html')
+    else:
+        return render_template('main.html')
 
+
+@app.route('/segmented' , methods =['POST','GET'])
+def segmented():
+    if request.method == 'POST':
+        type = request.json['type']
+        # Load the input image
+        image = cv2.imread('./static/imgs/unsegmented.jpg')
+        print(type)
+        if type == 'region-growing':
+            seedpoint = request.json['parameter1']
+            threshold= request.json['parameter2']
+            # Perform region growing segmentation
+            Segmentation.region_growing(Segmentation,image,(int(seedpoint),int(seedpoint)), int(threshold))
+        if type == 'mean-shift':
+            Bandwidth = request.json['parameter1']
+            # more bandwith == less run time , more smoothed image 
+            Segmentation.mean_shift(Segmentation,image,int(Bandwidth))
+        if type == 'k-means':
+            NumOfClusters = request.json['parameter1']
+            Maxiter = request.json['parameter2']
+            Segmentation.kmeans_cluster_image(Segmentation,int(NumOfClusters),image,int(Maxiter))
+        if type == 'agglomerative':
+            NumOfClusters = request.json['parameter1']
+            #Segmentation.segment(Segmentation,image,int(NumOfClusters))
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
 ## End of Segmentation Tab ##
 ## Thresholding Tab ##
 
+@app.route('/thresholdalgorithms' , methods = ['POST', 'GET'] )
+def thresholdalgorithms():
+    if request.method == 'POST':
+        img = request.files.get('thresholdalgorithms_input')
+        if img != None:
+            name = './static/imgs/' + img.filename + '.jpg'
+            img.save(name)
+        print(img)
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
+
+@app.route('/applythreshold' , methods = ['POST', 'GET'] )
+def applythreshold():
+    if request.method == 'POST':
+        data = request.json
+        print(data)
+        image = cv2.imread('./static/imgs/thresholdalgorithms_input.jpg',0)
+        if data["type"] == "global":
+            out_image = th.global_threshold(image,data["algorithm"])
+            cv2.imwrite('./static/imgs/Outputthreshold.jpg',out_image)
+        elif data["type"] == "local":
+            if data["algorithm"] == "default":
+                out_image = th.local_threshold_default(image,int(data["window"]))
+                cv2.imwrite('./static/imgs/Outputthreshold.jpg',out_image)
+            elif data["algorithm"] == "Spectral":
+                out_image = th.spectral_local_threshold(image,int(data["window"]))
+                cv2.imwrite('./static/imgs/Outputthreshold.jpg',out_image)
+            else:
+                out_image = th.local_threshold(image,int(data["window"]),data["algorithm"])
+                cv2.imwrite('./static/imgs/Outputthreshold.jpg',out_image)
+        return render_template("main.html")
+    else:
+        return render_template("main.html")
 ## End of Thresholding Tab ##
 if __name__ == '__main__':
     app.run(debug=True)

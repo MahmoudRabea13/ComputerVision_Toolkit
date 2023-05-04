@@ -119,21 +119,25 @@ body{
 .noise-types,
 .modes,
 .edge-detection-types ,.shapes
-,.contourparameters,.harris{
+,.contourparameters,.harris,
+.segments,
+.algorithm-types{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
 
 .kernal-size,
-.radius,.parameter1-size,
-.parameter2,
-.alpha,
-.beta,
-.gamma,.harrisrange{
+.radius,
+.parameter1-size,.parameter2,.alpha,.beta,.gamma
+,.harrisrange
+,.seedpoint-size,.rgthreshold,.meanshift-bandwidth , .Maxiter , .cluster{
     display: flex;
     justify-content: space-around;
     margin: 15px 0 0;
+}
+#segments{
+    margin-bottom: 70%;
 }
 
 .parameter2,
@@ -152,7 +156,9 @@ body{
 .parameter2-title,
 .alpha-title,
 .beta-title,
-.gamma-title,.harrisrange-title{
+.gamma-title,.harrisrange-title,
+.seedpoint-size-title, .Maxiter-title,.cluster-title,
+.rgthreshold-title,.meanshift-bandwidth-title{
 width: 40%;
 }
 
@@ -161,7 +167,9 @@ width: 40%;
 .parameter2 input,
 .alpha input,
 .beta input,
-.gamma input,.harrisrange input{
+.gamma input,.harrisrange input,
+.seedpoint-size input,.cluster input,.Maxiter input,.window-size input , 
+.rgthreshold input,.meanshift-bandwidth input{
     width: 50%;
     outline: none;
     border: none;
@@ -177,7 +185,9 @@ width: 40%;
 .noise-type,
 .mode,
 .edge-detection-type,
-.threshold-type,.side-bar .shape {
+.threshold-type,.side-bar .shape,
+.side-bar .segment,.applythreshold,
+.threshold-type {
     width: 100%;
     height: 5vh;
     color: var(--unslected-font-color);
@@ -194,15 +204,29 @@ width: 40%;
 .active-noise-type,
 .active-mode,
 .active-edge-detection,
-.active-threshold,.side-bar .shape.active-shape{
+.active-threshold,.side-bar .shape.active-shape,
+.side-bar .segment.active-segment,
+.active-mode,
+.active-threshold{
     color: white;
     background-color: var(--Mid-color);
 }
 
-.side-bar .filter:hover,.side-bar .shape:hover{
+.side-bar .filter:hover,.side-bar .shape:hover,
+.side-bar .segment:hover , .applythreshold:hover{
     background-color: var(--Mid-color);
 }
 
+.algorithm-title{
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--highlight-color);
+    margin-top: 15%;
+}
 
 .noise-title{
     width: 100%;
@@ -225,7 +249,18 @@ width: 40%;
     border-bottom: 1px solid var(--highlight-color);
     margin-top: 50px;
 }
-.noise-title .title{
+
+.threshold-title-11 , .segmentation-title{
+    width: 100%;
+    padding: 5px 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--highlight-color);
+}
+.noise-title .title,.algorithm-title .title{
     color: var(--font-color);
 }
 
@@ -327,6 +362,10 @@ img{
     margin-top: 40px;
 }
 
+.algorithm-types{
+    margin-bottom: 80%;
+}
+
 .double-img{
     width: 49.5%;
     height: 100%;
@@ -336,6 +375,7 @@ img{
 #raduis , #raduis2 , #raduis3 ,#kernal,
 #parameter2,#parameter1 ,#alpha,#beta,#gamma,
 #harrisrange ,#threshold
+,#rgthreshold ,#window,#seedpoint, #meanshift-bandwidth , #cluster , #Maxiter
 {
 font-size: 20px;
 text-align: center;
@@ -343,4 +383,15 @@ text-align: center;
 
 #alpha{
     margin-left: 65px;
+}
+
+#window-size{
+    margin-top: 20px;
+
+}
+#window{
+    width: 100%;
+}
+#apply-threshold{
+    color: white;
 }
