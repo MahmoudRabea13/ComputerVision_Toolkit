@@ -1,3 +1,18 @@
+
+document.addEventListener("click", (e)=>{
+
+    if(e.target.classList.contains("tab")){
+        toggleClass(tabs, "active-tab")
+        e.target.classList.add("active-tab")
+        for(i = 0; i < tabsBodies.length; i++){
+            tabsBodies[i].style.display = "none"
+            if(tabsBodies[i].classList[1][2] == e.target.classList[1][3]){
+                tabsBodies[i].style.display = "flex"
+            }
+        }
+    }
+});
+
 function toggleClass(div, classname){
     for(i = 0; i < div.length; i++){
         div[i].classList.remove(classname)
@@ -31,6 +46,20 @@ function json_request(data,route,state){
                 }
                 if(state == 'threshold'){
                     send_img('./static/imgs/threshold.jpg','edge')
+                }
+                if(state == 'inputhough'){
+                    send_img('./static/imgs/HoughInput.jpg','inputhough');
+                    }
+                if(state == 'outputhough'){
+                        send_img('./static/imgs/HoughOutput.jpg','outputhough');
+                        
+                    }
+                if(state == 'inputcontour'){
+                        send_img('./static/imgs/ContourInput.jpg','inputcontour');
+                    }
+                if(state == 'outputcontour'){
+                        send_img('./static/imgs/ContourOutput.jpg','outputcontour')
+    
                 }
             } else {
             console.log('err')
@@ -72,14 +101,30 @@ function send_img(path,state){
             edge.src = path +'?t=' + timestamp;
             outputEdge.innerHTML = " ";
             outputEdge.appendChild(edge);
-
         }
         if(state == 'threshold'){
             thresh = document.createElement('img')
             thresh.src = path +'?t=' + timestamp;
             outputEdge.innerHTML = " ";
             outputEdge.appendChild(edge);
-
+        }
+        if(state == 'inputhough'){
+            original = document.createElement('img')
+            original.src = path +'?t=' + timestamp;
+            Hough_input.innerHTML = " ";
+            Hough_input.appendChild(original);   
+        }
+        if(state == 'outputhough'){
+            output = document.createElement('img')
+            output.src = path +'?t=' + timestamp;
+            Hough_output.innerHTML = " ";
+            Hough_output.appendChild(output);      
+            }
+        if(state == 'outputcontour'){
+            outputcontour = document.createElement('img')
+            outputcontour.src = path +'?t=' + timestamp;
+            Contour_output.innerHTML = " ";
+            Contour_output.appendChild(outputcontour); 
         }
     } else {
         console.log('Image does not exists.')

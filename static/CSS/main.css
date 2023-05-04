@@ -118,17 +118,29 @@ body{
 .filters,
 .noise-types,
 .modes,
-.edge-detection-types{
+.edge-detection-types ,.shapes
+,.contourparameters{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
 
 .kernal-size,
-.radius{
+.radius,.parameter1-size,
+.parameter2,
+.alpha,
+.beta,
+.gamma{
     display: flex;
     justify-content: space-around;
     margin: 15px 0 0;
+}
+
+.parameter2,
+.alpha,
+.beta,
+.gamma{
+    display: flex;
 }
 
 .radius{
@@ -136,12 +148,20 @@ body{
 }
 
 .kernal-size-title,
-.radius-title{
+.radius-title,.parameter1-size-title,
+.parameter2-title,
+.alpha-title,
+.beta-title,
+.gamma-title{
 width: 40%;
 }
 
 .kernal-size input,
-.radius input{
+.radius input,.parameter1-size input,
+.parameter2 input,
+.alpha input,
+.beta input,
+.gamma input{
     width: 50%;
     outline: none;
     border: none;
@@ -153,7 +173,7 @@ width: 40%;
 .noise-type,
 .mode,
 .edge-detection-type,
-.threshold-type{
+.threshold-type,.side-bar .shape {
     width: 100%;
     height: 5vh;
     color: var(--unslected-font-color);
@@ -170,20 +190,15 @@ width: 40%;
 .active-noise-type,
 .active-mode,
 .active-edge-detection,
-.active-threshold{
+.active-threshold,.side-bar .shape.active-shape{
     color: white;
     background-color: var(--Mid-color);
 }
 
-.side-bar .filter:hover{
+.side-bar .filter:hover,.side-bar .shape:hover{
     background-color: var(--Mid-color);
 }
 
-/* .snr{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-} */
 
 .noise-title{
     width: 100%;
@@ -314,7 +329,11 @@ img{
     background-color: var(--Dark-color);
 }
 
-#raduis , #raduis2 , #raduis3 ,#kernal{
+#raduis , #raduis2 , #raduis3 ,#kernal,#parameter2,#parameter1 ,#alpha,#beta,#gamma{
 font-size: 20px;
 text-align: center;
+}
+
+#alpha{
+    margin-left: 65px;
 }

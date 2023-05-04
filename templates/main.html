@@ -13,6 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.15/css/jquery.Jcrop.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jcrop/0.9.15/js/jquery.Jcrop.js"></script>
 </head>
 <body>
     <div class="header">
@@ -21,6 +24,8 @@
             <div class="tab tab2">Histogram</div>
             <div class="tab tab3">Hybrid</div>
             <div class="tab tab4">Edge Detection</div>
+            <div class="tab tab5">Hough</div>
+            <div class="tab tab6">Contour</div>
         </div>
     </div>
     <div class="tab-body TB1">
@@ -156,11 +161,72 @@
                 <div class="img filtered-img tb4-selected-filter double-img"></div>
             </div> 
     </div>
+    </div>
+    <div class="tab-body TB5">
+        <div class="container">
+            <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload2" class="upload">
+                </div>
+                <div class="shapes">
+                    <form action="/shape" method="POST">
+                        <div class="shape Line-shape active-shape " id="line">Line</div>
+                        <div class="shape Circle-shape" id="circle">Circle</div>
+                        <div class="shape Ellipse-shape" id="ellipse">Ellipse</div>
+                    </form>
+                    <div class="parameter1-size">
+                        <div class="parameter1-size-title" id="parameter1-title">Roh</div>
+                        <input type="number" value="3" min="1" max="256" step="1" id="parameter1">
+                    </div>
+                    <div class="parameter2">
+                        <div class="parameter2-title" id="parameter2-title">threshold</div>
+                        <input type="number" value="2"  min="1" max="256" step="1" id="parameter2">
+                    </div>
+                </div>
+            </div>
+            <div class="imgs">
+                <div class="img inputhough-img double-img">
+                </div>
+                <div class="img outputhough-img double-img">
+
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="tab-body TB6">
+        <div class="container">
+                <div class="side-bar">
+                <div class="upload-img">
+                    <input type="file" id="upload-contour">
+                </div>
+                <div class="contourparameters">
+                <div class="alpha" >
+                    <div class="alpha-size-title" id="alpha-title">alpha</div>
+                    <input type="number" value="3" min="1" max="256" step="1" id="alpha">
+                </div>
+                <div class="beta">
+            <div class="beta-title" id="beta-title">beta</div>
+                    <input type="number" value="2"  min="1" max="256" step="1" id="beta">
+                </div>
+                <div class="gamma">
+                    <div class="gamma-title" id="gamma-title">gamma</div>
+                    <input type="number" value="2"  min="1" max="256" step="1" id="gamma">
+                </div>
+                </div>
+            </div>
+        <div class="imgs">
+                <div id="contour-konva" class="img input-img-contour double-img"></div>
+                <div class="img output-img-contour double-img"></div>
+        </div>
+        </div>
+    </div>
 </body>
 <script src="/static/JS/Filter.js"></script>
 <script src="/static/JS/Histogram.js"></script>
 <script src="/static/JS/Hybrid.js"></script>
 <script src="/static/JS/Edge.js"></script>
+<script src="/static/JS/Hough.js"></script>
+<script src="/static/JS/Contour.js"></script>
 <script src="/static/JS/functions.js"></script>
 <script src="/static/JS/all.min.js"></script>
 </html>
